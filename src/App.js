@@ -37,7 +37,7 @@ function App() {
         })
       }
       
-      <button onClick={()=>{setMView(true)}}>클릭</button>
+      <button onClick={()=>{setMView(!mView)}}>클릭</button>
       {
         mView == true ? <Modal></Modal> : null
       }
