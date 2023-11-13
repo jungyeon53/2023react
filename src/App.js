@@ -1,59 +1,61 @@
-import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css'
 
-// function App(), Modal()이 Component
 
 function App() {
-
-  let [data, setData] = useState(1)
-  let [listData, setListData] = useState(['list1', 'list2', 'list3'])
-  let [mView, setMView] = useState(false)
-  let today = new Date();
-  let time = {
-    year: today.getFullYear(),
-    month: today.getMonth() + 1,
-    date: today.getDate()
-
-  }
+  const [num,setNum] =useState(0)
+  const [data,setData] = useState([
+    "1Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, facilis.",
+    "2Eos provident perferendis at distinctio molestiae esse, eligendi nulla hic!",
+    "3Perspiciatis quam autem aliquid vitae debitis consectetur? Iusto, culpa tempore!",
+  ])
+  // function handlerTab(){
+  //       setNum(1)
+  // }
   return (
-    <div className='App'>
-      <div>{data}</div>
-      <button onClick={() => { setData(data + 1) }}>클릭</button>
+    <div className="App" >
 
+      {/* <ModalView /> */}
+      {num}
+
+      <div className='tab'>
+        <ul>
+          <li onClick={()=>{setNum(0)}} className={`${num==0 ? "active" : ""}`}>tab1</li>
+          <li onClick={()=>{setNum(1)}} className={`${num==1 ? "active" : ""}`}>tab2</li>
+          <li onClick={()=>{setNum(2)}} className={`${num==2 ? "active" : ""}`}>tab3</li>
+        </ul>
+      </div>
+      <div style={{margin:"0 0 10px 0"}}>
+        {data[num]}
+      </div>
+      <hr />
+
+      <ul className='lists'>
       {
-        // key값 i를 넣어줘야함?
-        listData.map(function (item, i) {
-          // console.log(item)
-          // {item} 은 안됨, return이라는 애를 넣어줘야 함.
-          return (
+        data.map(function(item,i){
+          return(
             <>
-              <div className='flex'>
-                <div className="item">{item}</div>
-                <div>{time.year}/{time.month}/{time.date}</div>
-              </div>
+             <li onClick={()=>{setNum(i)}}>{item}</li>
             </>
           )
         })
       }
-      
-      <button onClick={()=>{setMView(!mView)}}>클릭</button>
-      {
-        mView == true ? <Modal></Modal> : null
-      }
+      </ul>
+      <Modal rData={data} rNum = {num} />
     </div>
   );
 }
 
-function Modal() {
-  return(
+function Modal(props){
+  return (
     <>
-    <div className="modal">
-      <h3>제목</h3>
-      <p>안녕하세요</p>
-    </div>
+      <div className="modal">
+        <h3>suject1</h3>
+        <p>{props.rData[props.rNum]}</p>
+      </div>
     </>
   )
 }
+
 
 export default App;
