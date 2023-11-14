@@ -1,70 +1,49 @@
 import { useState } from 'react';
-import './App.css';
+import './App.css'
+import {vData, vData1} from './data.js';
+
 
 function App() {
-  const [num, setNum] = useState(0)
-  const [data, setData] = useState([
-    "1. Lorem ipsum dolor sit amet.",
-    "2. Itaque at aperiam delectus maxime!",
-    "3. Vel illum nesciunt dolor magni!"
-  ])
-  const [vModal,setVModal] = useState(false)
-
-  const openList = (i)=>{
-    setNum(i)
-    setVModal(true)
-  }
-
-  const handleClose = ()=>{
-    setVModal(false)
-  }
-
+  const [viewData, setViewData] = useState(vData)
+  const [viewData1, setViewData1] = useState(vData1)
   return (
     <div className="App">
-      {num}
-      <ul className="lists">
-        {
-          data.map(function (item, i) {
-            return(
-              <>
-                <li onClick={()=>{openList(i)}}>{item}</li>
-              </>
-            )
-          })
-        }
-      </ul>
-      <button onClick={()=>{setVModal(!vModal)}}>보기/안보기</button>
-
-        {
-          vModal == true ? <Modal rData = {data} rNum={num} onClose={handleClose} /> : null
-        }
-
-
-    </div>
-  )
-}
-
-// function Modal(props){
-//   return(
-//     <div className="modal">
-//       <h3>안녕하세요</h3>
-//       <p>{props.rData[props.rNum]}</p>
-//       <div className='btnWrap'>
-//         <button>닫기</button>
-//       </div>
-//     </div>
-//   )
-// }
-function Modal({rData,rNum,onClose}){
-  return(
-    <div className="modal">
-      <div className='modalBody'>
-        <h3>안녕하세요</h3>
-        <p>{rData[rNum]}</p>
-      </div>
-      <div className='btnWrap'>
-        <button onClick={onClose}>닫기</button>
-      </div>
+      {
+        viewData.map(function (item) {
+          return (
+            <>
+              <div style={{display: "flex"}}>
+                <div>{item.id}</div>
+                <div>{item.title}</div>
+                <div>{item.content}</div>
+                <div>{item.img}</div>
+                {/* 백틱은 문자와 숫자를 같이 쓸 수 있음  */}
+                <div className='avata'>
+                  <img src={`./img/${item.img}`} alt="" />
+                  </div>
+              </div>
+            </>
+          )
+        })
+      }
+      {
+        viewData1.map(function (item) {
+          return (
+            <>
+              <div style={{display: "flex"}}>
+                <div>{item.id}</div>
+                <div>{item.title}</div>
+                <div>{item.content}</div>
+                <div>{item.img}</div>
+                {/* 백틱은 문자와 숫자를 같이 쓸 수 있음  */}
+                <div className='avata'>
+                  <img src={`./img/${item.img}`} alt="" />
+                  </div>
+              </div>
+            </>
+          )
+        })
+      }
     </div>
   )
 }
