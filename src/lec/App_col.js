@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css'
-import {vData, vData1} from './data.js';
+import {vData, vData1} from '../data.js';
 import { Button, Container, Row , Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

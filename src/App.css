@@ -117,3 +117,42 @@ display: flex;
   left: 50%;
   transform: translateX(-700%);
 }
+
+.card {
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.card:hover{
+                      /* x값     y값 */
+  transform: translate(-10px, -10px);
+  box-shadow: 20px 20px 10px rgba(0,0,0,0.3);
+}
+
+.icon{
+  width: 70px;
+  height: 70px;
+  background: skyblue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner {
+  height: 400px;
+}
+
+.banner img{
+  position: absolute;
+}
+
+.banWrap {
+  background-image: url(./assets/css/img/Banner.avif);
+  /* 화면 움직여도 배경 멈추게 하기  */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  opacity:0.8;
+
+}
